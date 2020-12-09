@@ -12,8 +12,10 @@ Social_Media_App
    <img src="https://i.imgur.com/gKMjVLF.jpg" width="250" height="418"> <img src="https://i.imgur.com/swuwCp6.jpg" width="250" height="418"> <img src="https://i.imgur.com/iMhF7cO.jpg" width="250" height="418"> .
 ## Clickable Link 
   <img src="https://i.imgur.com/swuwCp6.jpg" width="250" height="418">  <img src="https://i.imgur.com/B3WP05B.jpg" width="250" height="418"> .
+  
 ## Like button
    <img src="https://i.imgur.com/swuwCp6.jpg" width="250" height="418">
+   
 ## SignOut
    <img src="https://i.imgur.com/YkuZrFW.jpg" width="250" height="418">  <img src="https://i.imgur.com/mmexUwf.jpg" width="250" height="418">
    
