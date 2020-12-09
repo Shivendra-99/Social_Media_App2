@@ -1,4 +1,5 @@
-# Social_Media_App
+Social_Media_App
+================
 ## Library are used in the app
 - Recylerview
 - Firebase Auth
