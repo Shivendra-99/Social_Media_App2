@@ -10,7 +10,7 @@
    <img src="https://i.imgur.com/gKMjVLF.jpg" width="250" height="418"> <img src="https://i.imgur.com/swuwCp6.jpg" width="250" height="418"> <img src="https://i.imgur.com/iMhF7cO.jpg" width="250" height="418"> 
 # Clickable Link   
    <img src="https://i.imgur.com/swuwCp6.jpg" width="250" height="418"> 
-## Chrome_Custom_Tab   
+## Chrome_Custom_Tab  
    <img src="https://i.imgur.com/B3WP05B.jpg" width="250" height="418">
    
 ## Thank You   
