@@ -7,6 +7,10 @@
 - Picasso
 - Firebase UI
 ## Screenshot
-   <img src="https://i.imgur.com/DnicblK.jpg" width="250" height="418"> <img src="https://i.imgur.com/swuwCp6.jpg" width="250" height="418"> <img src="https://i.imgur.com/8H3Tkkk.jpg" width="250" height="418">  <img src="https://i.imgur.com/JVacbhL.jpg" width="250" height="418"> <img src="https://i.imgur.com/tUPSpdS.jpg" width="250" height="418">
+   <img src="https://i.imgur.com/gKMjVLF.jpg" width="250" height="418"> <img src="https://i.imgur.com/swuwCp6.jpg" width="250" height="418"> <img src="https://i.imgur.com/iMhF7cO.jpg" width="250" height="418"> 
+# Clickable Link   
+   <img src="https://i.imgur.com/swuwCp6.jpg" width="250" height="418"> 
+# Link open in Chrome Custom Tab   
+   <img src="https://i.imgur.com/B3WP05B.jpg" width="250" height="418">
    
 ## Thank You   
