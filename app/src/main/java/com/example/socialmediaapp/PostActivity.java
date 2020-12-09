@@ -42,7 +42,6 @@ public class PostActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){

@@ -36,7 +36,6 @@ import me.saket.bettermovementmethod.BetterLinkMovementMethod;
 
 public class RecylerAdopter extends FirestoreRecyclerAdapter<PostModel,RecylerAdopter.AdopterViewHolder> {
     timeutils timeutils=new timeutils();
-    PostDao dao=new PostDao();
     private OnItemClickListener listener;
     public RecylerAdopter(@NonNull FirestoreRecyclerOptions<PostModel> options) {
         super(options);

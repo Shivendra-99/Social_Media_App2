@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
-                builder.setMessage("Do you want to sign out");
+                builder.setMessage("Are sure to Delete this post");
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
