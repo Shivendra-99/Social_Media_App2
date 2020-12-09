@@ -7,6 +7,7 @@ Social_Media_App
 - Chrome Custom Tab
 - Picasso
 - Firebase UI
+- CardView
 - CircleImageView
 # Screenshot
    <img src="https://i.imgur.com/gKMjVLF.jpg" width="250" height="418"> <img src="https://i.imgur.com/swuwCp6.jpg" width="250" height="418"> <img src="https://i.imgur.com/iMhF7cO.jpg" width="250" height="418"> .
