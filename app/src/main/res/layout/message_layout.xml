@@ -55,11 +55,19 @@
             android:textColor="#400F0F"
             />
         <ImageView
+            android:id="@+id/Upload_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/PostTitle"
+            />
+        <ImageView
             android:id="@+id/LikeImage"
             android:layout_width="24dp"
             android:layout_height="24dp"
             app:layout_constraintLeft_toLeftOf="@id/PostTitle"
-            app:layout_constraintTop_toBottomOf="@id/PostTitle"
+            app:layout_constraintTop_toBottomOf="@id/Upload_image"
             android:layout_marginTop="16dp"
             android:src="@drawable/ic_linked"
             android:contentDescription="TODO" />

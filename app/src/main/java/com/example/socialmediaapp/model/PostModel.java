@@ -8,14 +8,23 @@ public class PostModel {
     ArrayList<String> likes=new ArrayList<>();
     user name;
     long time;
-
+    String image_url;
     public PostModel() {
     }
-    public PostModel(String post, user name, long time,ArrayList<String> Likes) {
+    public PostModel(String post, user name, long time,ArrayList<String> Likes,String image_url) {
         this.post = post;
         this.name = name;
         this.time = time;
         this.likes=Likes;
+        this.image_url=image_url;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 
     public String getPost() {

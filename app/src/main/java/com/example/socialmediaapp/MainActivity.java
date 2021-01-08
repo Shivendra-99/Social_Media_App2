@@ -3,6 +3,7 @@ package com.example.socialmediaapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton floatingActionButton;
     RecyclerView recyclerView;
     RecylerAdopter recylerAdopter;
+    boolean dark=true;
     PostDao mpost=new PostDao();
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -117,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId())
         {
-            case R.id.sign_button:
+            case R.id.sign_ button:
                 AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
                 builder.setMessage("Do you want to sign out");
                 builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
@@ -137,6 +139,18 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog alertDialog=builder.create();
                 alertDialog.show();
                 return true;
+            case R.id.drak_mode:
+                if(dark) {
+                    getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    dark=false;
+                    Toast.makeText(this,"Dark Mode Turn ON",Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    dark=true;
+                    Toast.makeText(this,"Dark Mode Turn OFF",Toast.LENGTH_LONG).show();
+                }
         }
         return super.onOptionsItemSelected(item);
     }

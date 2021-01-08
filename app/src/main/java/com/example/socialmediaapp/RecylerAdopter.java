@@ -51,8 +51,12 @@ public class RecylerAdopter extends FirestoreRecyclerAdapter<PostModel,RecylerAd
         {
             holder.count.setText("0");
         }
-        holder.created.setText(timeutils.getTime(model.getTime()));
-        Picasso.get().load(model.getName().getImageUrl()).into(holder.imageView);
+                   holder.created.setText(timeutils.getTime(model.getTime()));
+                   Picasso.get().load(model.getName().getImageUrl()).into(holder.imageView);
+                   if(model.getImage_url()!=null) {
+                       Picasso.get().load(model.getImage_url()).into(holder.uploadImage);
+                       Log.d("Adopter Link",model.getImage_url());
+                   }
                    String authProvider= FirebaseAuth.getInstance().getCurrentUser().getUid();
                    Log.d("My user id",authProvider);
                    if(model.getLikes()!=null) {
@@ -80,7 +84,7 @@ public class RecylerAdopter extends FirestoreRecyclerAdapter<PostModel,RecylerAd
     public class AdopterViewHolder extends RecyclerView.ViewHolder {
         CircleImageView imageView;
         TextView postTit,created,count,name;
-        ImageView LikeImage;
+        ImageView LikeImage,uploadImage;
         public AdopterViewHolder(@NonNull View itemView) {
             super(itemView);
             postTit=itemView.findViewById(R.id.PostTitle);
@@ -100,6 +104,7 @@ public class RecylerAdopter extends FirestoreRecyclerAdapter<PostModel,RecylerAd
             count=itemView.findViewById(R.id.LikeCount);
             LikeImage=itemView.findViewById(R.id.LikeImage);
             imageView=itemView.findViewById(R.id.profileImage);
+            uploadImage=itemView.findViewById(R.id.Upload_image);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

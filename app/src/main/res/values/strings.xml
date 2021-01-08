@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Social Media App</string>
     <string name="user_name">User Name</string>
+    <string name="home">Home</string>
+    <string name="sign_out">Sign out</string>
+    <string name="Dark">Dark Mode</string>
+    <string name="please_add_here">Please write your post here"</string>
 </resources>

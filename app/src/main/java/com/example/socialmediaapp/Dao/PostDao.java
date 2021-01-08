@@ -32,7 +32,7 @@ public class PostDao {
     public CollectionReference getCollectionReference() {
         return collectionReference;
     }
-    public void post(String text) {
+    public void post(String text,String upload_image) {
      DaosData i=new DaosData();
         String authProvider= FirebaseAuth.getInstance().getCurrentUser().getUid();
      Log.d("Auth provider",authProvider);
@@ -42,7 +42,7 @@ public class PostDao {
              public void onSuccess(DocumentSnapshot documentSnapshot) {
                  u = documentSnapshot.toObject(user.class);
                  long currentTime = System.currentTimeMillis();
-                 PostModel model = new PostModel(text, u, currentTime,postModel.getLikes());
+                 PostModel model = new PostModel(text, u, currentTime,postModel.getLikes(),upload_image);
                  collectionReference.document().set(model);
              }
          });

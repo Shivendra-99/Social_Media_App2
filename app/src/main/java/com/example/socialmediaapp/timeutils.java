@@ -30,6 +30,10 @@ public class timeutils {
         else if(diff<24*hour_mil)
         {
             int hour=(int)((currentTime-value)/(1000*60*60))%24;
+            if(hour==0)
+            {
+                return "an hour ago";
+            }
             return String.format("%d hour ago", hour);
         }
         else if(diff<48*hour_mil)

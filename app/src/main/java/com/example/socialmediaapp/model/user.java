@@ -7,7 +7,6 @@ public class user {
    String userui;
    String userName;
    String imageUrl;
-
     public  user()
    {
    }
