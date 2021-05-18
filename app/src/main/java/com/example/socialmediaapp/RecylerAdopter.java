@@ -10,8 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.browser.customtabs.CustomTabsIntent;
@@ -25,6 +27,20 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.ExoPlayerFactory;
+import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
+import com.google.android.exoplayer2.extractor.ExtractorsFactory;
+import com.google.android.exoplayer2.source.ExtractorMediaSource;
+import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
+import com.google.android.exoplayer2.trackselection.TrackSelector;
+import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
+import com.google.android.exoplayer2.upstream.BandwidthMeter;
+import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -37,19 +53,45 @@ import me.saket.bettermovementmethod.BetterLinkMovementMethod;
 public class RecylerAdopter extends FirestoreRecyclerAdapter<PostModel,RecylerAdopter.AdopterViewHolder> {
     timeutils timeutils=new timeutils();
     private OnItemClickListener listener;
+    private PostModel postModel=new PostModel();
     public RecylerAdopter(@NonNull FirestoreRecyclerOptions<PostModel> options) {
         super(options);
     }
     @Override
     protected void onBindViewHolder(@NonNull AdopterViewHolder holder, int position, @NonNull PostModel model) {
+        postModel=model;
         holder.name.setText(model.getName().getUserName());
         holder.postTit.setText(model.getPost());
+        if(model.getTextColor()!=0){
+            holder.postTit.setTextColor(model.getTextColor());
+        }
+        if(model.getBackgroundColor()!=0){
+            holder.postTit.setBackgroundColor(model.getBackgroundColor());
+        }
         if(model.getLikes()!=null) {
             holder.count.setText(Integer.toString(model.getLikes().size()));
         }
         else
         {
             holder.count.setText("0");
+        }
+        if(postModel.getVideo_url()==null){
+            holder.exoPlayerView.setVisibility(View.GONE);
+        }
+        if(postModel.getVideo_url()!=null){
+            holder.exoPlayerView.setVisibility(View.VISIBLE);
+            BandwidthMeter bandwidthMeter=new DefaultBandwidthMeter();
+            TrackSelector trackSelector=new DefaultTrackSelector(new AdaptiveTrackSelection.Factory(bandwidthMeter));
+            holder.simpleExoPlayer= ExoPlayerFactory.newSimpleInstance(holder.created.getContext(),trackSelector);
+            Uri videoUrl=Uri.parse(postModel.getVideo_url());
+            DefaultHttpDataSourceFactory defaultHttpDataSourceFactory=new DefaultHttpDataSourceFactory("exoplayer_view");
+            ExtractorsFactory extractorsFactory=new DefaultExtractorsFactory();
+            MediaSource mediaSource=new ExtractorMediaSource(videoUrl,defaultHttpDataSourceFactory,extractorsFactory,null,null);
+            holder.exoPlayerView.setPlayer(holder.simpleExoPlayer);
+            holder.simpleExoPlayer.prepare(mediaSource);
+            holder.exoPlayerView.setMinimumHeight(200);
+            holder.simpleExoPlayer.setVolume(50);
+            holder.simpleExoPlayer.setPlayWhenReady(true);
         }
                    holder.created.setText(timeutils.getTime(model.getTime()));
                    Picasso.get().load(model.getName().getImageUrl()).into(holder.imageView);
@@ -85,11 +127,12 @@ public class RecylerAdopter extends FirestoreRecyclerAdapter<PostModel,RecylerAd
         CircleImageView imageView;
         TextView postTit,created,count,name;
         ImageView LikeImage,uploadImage;
+        SimpleExoPlayerView exoPlayerView;
+        SimpleExoPlayer simpleExoPlayer;
         public AdopterViewHolder(@NonNull View itemView) {
             super(itemView);
             postTit=itemView.findViewById(R.id.PostTitle);
             created=itemView.findViewById(R.id.createdTime);
-          //  Linkify.addLinks(created,Linkify.ALL);
             BetterLinkMovementMethod.linkify(Linkify.WEB_URLS | Linkify.EMAIL_ADDRESSES | Linkify.MAP_ADDRESSES, (Activity) created.getContext()).setOnLinkClickListener((created, url)->
             {
                 CustomTabsIntent.Builder builder=new CustomTabsIntent.Builder();
@@ -105,6 +148,7 @@ public class RecylerAdopter extends FirestoreRecyclerAdapter<PostModel,RecylerAd
             LikeImage=itemView.findViewById(R.id.LikeImage);
             imageView=itemView.findViewById(R.id.profileImage);
             uploadImage=itemView.findViewById(R.id.Upload_image);
+            exoPlayerView=itemView.findViewById(R.id.video_player);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
